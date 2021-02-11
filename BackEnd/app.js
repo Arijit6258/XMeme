@@ -123,27 +123,33 @@ app.get('/memes/:id', (req, res) => {
 
 // patch requset to update a meme
 app.patch('/memes/:id', (req, res) => {
-    var updated_object = {};
-    var id = req.params.id;
+    if (!isImageUrl(req.body.url)) {
+        res.status(404).send("<h1>Invalid url. Please provide a proper valid image url.</h1>");
+    }
 
-    // check if id is available or not
-    post_model.countDocuments({ "take": true }, (error, count) => {
-        if (error) res.send(error);
+    else {
+        var updated_object = {};
+        var id = req.params.id;
 
-        let req_id_int = parseInt(id);
-        if (count < req_id_int || req_id_int < 1) {
-            res.status(404).send("Not Found!! Send valid Id");
-        } else {
-            if (req.body.caption !== "") updated_object["caption"] = req.body.caption;
-            if (req.body.url !== "") updated_object["url"] = req.body.url;
-            // console.log(updated_object);
-            post_model.updateOne({ "id": id }, updated_object, (error, response) => {
-                if (error) res.send(error);
-                // console.log(response);
-                res.status(200).send("success");
-            });
-        }
-    });
+        // check if id is available or not
+        post_model.countDocuments({ "take": true }, (error, count) => {
+            if (error) res.send(error);
+
+            let req_id_int = parseInt(id);
+            if (count < req_id_int || req_id_int < 1) {
+                res.status(404).send("Not Found!! Send valid Id");
+            } else {
+                if (req.body.caption !== "") updated_object["caption"] = req.body.caption;
+                if (req.body.url !== "") updated_object["url"] = req.body.url;
+                // console.log(updated_object);
+                post_model.updateOne({ "id": id }, updated_object, (error, response) => {
+                    if (error) res.send(error);
+                    // console.log(response);
+                    res.status(200).send("success");
+                });
+            }
+        });
+    }
 });
 
 // Invalid routes

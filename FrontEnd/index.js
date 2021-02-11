@@ -20,7 +20,7 @@ function getContent(object) {
 function getMemeList() {
     // Making a request to api to fetch latest 100 memes
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://localhost:8081/memes", true);
+    xhr.open("GET", "http://3.16.37.57:8081/memes/", true);
     xhr.send();
     xhr.onreadystatechange = function () {
         //console.log(this.readyState);
@@ -73,7 +73,7 @@ function eventHandler(event) {
 
     // posting the request to express backend
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8081/memes", true);
+    xhr.open("POST", "http://3.16.37.57:8081/memes/", true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(req);
     //console.log("Post is called");

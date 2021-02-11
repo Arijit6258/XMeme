@@ -1,7 +1,7 @@
 // Javascript code to update a meme
 
 // Function to display the pop-up for editing meme
-function editMeme (id) {
+function editMeme(id) {
     // set the id so that we can access the data in db
     document.getElementById("submit-edit")["data-id"] = id;
     document.querySelector('.bg-modal').style.display = "flex";
@@ -26,18 +26,23 @@ function patch() {
         return;
     }
 
-    var req = JSON.stringify({"url": updated_url ,"caption": updated_caption});
+    var req = JSON.stringify({ "url": updated_url, "caption": updated_caption });
 
     // posting the request to express backend to update the db
     const xhr_patch = new XMLHttpRequest();
-    xhr_patch.open("PATCH", `http://localhost:8081/memes/${data_id}`, true);
+    xhr_patch.open("PATCH", `http://3.16.37.57:8081/memes/${data_id}`, true);
     xhr_patch.setRequestHeader("Content-type", "application/json");
     xhr_patch.send(req);
 
     xhr_patch.onreadystatechange = function () {
-        getMemeList();
-        document.querySelector('.bg-modal').style.display = "none";
-        document.getElementById("update-form").reset();
-        return;
+        if (xhr_patch.status == 200) {
+            getMemeList();
+            document.querySelector('.bg-modal').style.display = "none";
+            document.getElementById("update-form").reset();
+            return;
+        } else if (xhr.status == 404) {
+            window.alert("Invalide URL !!! Please provide valid url.")
+            xhr.abort();
+        }
     };
 }
