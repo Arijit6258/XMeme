@@ -123,7 +123,7 @@ app.get('/memes/:id', (req, res) => {
 
 // patch requset to update a meme
 app.patch('/memes/:id', (req, res) => {
-    if (!isImageUrl(req.body.url)) {
+    if (req.body.url !== "" && !isImageUrl(req.body.url)) {
         res.status(404).send("<h1>Invalid url. Please provide a proper valid image url.</h1>");
     }
 
@@ -136,7 +136,7 @@ app.patch('/memes/:id', (req, res) => {
             if (error) res.send(error);
 
             let req_id_int = parseInt(id);
-            if (count < req_id_int || req_id_int < 1) {
+            if (count <= req_id_int || req_id_int < 1) {
                 res.status(404).send("Not Found!! Send valid Id");
             } else {
                 if (req.body.caption !== "") updated_object["caption"] = req.body.caption;

@@ -35,14 +35,15 @@ function patch() {
     xhr_patch.send(req);
 
     xhr_patch.onreadystatechange = function () {
+        console.log(xhr_patch)
         if (xhr_patch.status == 200) {
             getMemeList();
             document.querySelector('.bg-modal').style.display = "none";
             document.getElementById("update-form").reset();
             return;
-        } else if (xhr.status == 404) {
+        } else if (xhr_patch.status == 404) {
             window.alert("Invalide URL !!! Please provide valid url.")
-            xhr.abort();
+            xhr_patch.abort();
         }
     };
 }
