@@ -1,0 +1,22 @@
+{
+    "name": "crio-xmeme",
+    "version": "1.0.0",
+    "description": "npm packages for crio xmeme project",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Arijit Roy",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^5.3.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "is-image-url": "^1.1.8",
+        "mongoose": "^5.11.15",
+        "nodemon": "^2.0.7",
+        "path": "^0.12.7",
+        "swagger-jsdoc": "^6.0.2",
+        "swagger-ui-express": "^4.1.6"
+    }
+}

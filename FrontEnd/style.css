@@ -1,0 +1,31 @@
+/* Style for the pop-up window for editing meme */
+.bg-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+/* Style for content of pop-up window */
+.modal-content {
+    width: 700px;
+    height: 300px;
+    background-color: royalblue;
+    margin-top: 40px;
+    border-radius: 30px;
+    position: relative;
+}
+/* Style for the close button*/
+.close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 30px;
+    transform: rotate(45deg);
+    color: white;
+    cursor: pointer;
+}

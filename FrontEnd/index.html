@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>XMeme</title>
+  <!-- Adding bootstrap link and css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Header - Navbar-->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/FrontEnd/index.html"><img src="Logo.png" style="width: 80px; height: 80px;"
+            alt="" width="30" height="24" class="d-inline-block align-top"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/FrontEnd/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:8080/swagger-ui" target="_blank">Swagger API Doc</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="card text-center">
+    <div>
+      <h3>Enter Details to post your meme</h3>
+    </div>
+    <!-- Form to post meme -->
+    <form action="./index.html" id="meme-submission" style="margin-right: 20px;">
+      <br>
+      <!-- name input -->
+      <div class="row mb-3">
+        <label for="owner_name" class="col-sm-2 col-form-label">Full Name<span style="color: red;">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="owner_name" placeholder="Enter your full name (required)"
+            required>
+        </div>
+      </div>
+
+      <!-- caption input-->
+      <div class="row mb-3">
+        <label for="caption" class="col-sm-2 col-form-label">Caption<span style="color: red;">*</span></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="caption"
+            placeholder="Enter suitable caption for you meme (required)" required>
+        </div>
+      </div>
+
+      <!-- meme url input -->
+      <div class="row mb-3">
+        <label for="meme_url" class="col-sm-2 col-form-label">Meme URL<span style="color: red;">*</span></label>
+        <div class="col-sm-10">
+          <input type="url" class="form-control" id="meme_url" placeholder="Enter URL of your meme (required)" required>
+        </div>
+      </div>
+
+      <!-- Reset and Submit button -->
+      <input type="submit" value="Post Meme" class="btn btn-success" style="margin: 10px;">
+      <input type="reset" value="Reset form" class ="btn btn-success" style="margin: 10px;">
+    </form>
+  </div>
+
+  <!-- Displaying form to post memes -->
+  <div class="card text-center" id="display-container">
+  </div>
+
+  <!-- Script to handle api and show list of posted memes -->
+  <script src="index.js"></script>
+  <script>getMemeList();</script>
+
+  <!-- Modal section -->
+  <!-- Pop up form to update/edit a meme -->
+  <div class="bg-modal">
+    <div class="modal-content">
+      <div class="close" id="closeButton">+</div>
+      <h3 style="margin-top: 20px; margin-bottom: 20px; text-align: center; color: yellow;">Change cption or meme URL or
+        both</h3>
+      <form id="update-form" action="#">
+        <div class="form-floating mb-3" style="width: 450px; margin-left: 130px;">
+          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Type new caption</label>
+        </div>
+        <div class="form-floating" style="width: 450px; margin-left: 130px;">
+          <input type="url" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Type new url</label>
+        </div>
+
+        <input type="submit" data-id="" id="submit-edit" onclick="patch()" value="Edit Meme" class="btn btn-success"
+          style="margin-left: 300px; margin-top: 20px; color: red;background-color: yellow;width: fit-content;">
+      </form>
+    </div>
+  </div>
+  <!-- Script to handle api to update meme -->
+  <script src="patch.js"></script>
+</body>
+</html>
