@@ -12,7 +12,7 @@
             "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
         }
     },
-    "host": "localhost:8081",
+    "host": "3.16.37.57:8081",
     "basePath": "/",
     "schemes": [
         "http"
